@@ -70,7 +70,7 @@ Truy cập backend_kiki/.env
 Thay đổi giá trị mongo db thành giá trị tương ứng của bản thân
 
 `MONGO_DB_USER = ten_tai_khoan_cua_ban`
-`MONGO_DB_PASSWORD = mat_khau_cua_ban
+`MONGO_DB_PASSWORD = mat_khau_cua_ban`
 
 Nếu bạn không chắc chắn về nó. Bạn có thể kiểm tra nó trong `Database Access` nằm ở phía bên trái và sau đó nhấp vào `Edit`
 
