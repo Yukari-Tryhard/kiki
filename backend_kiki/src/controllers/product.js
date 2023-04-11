@@ -2,6 +2,7 @@ const { Product, Category } = require("../models");
 const shortid = require("shortid");
 const slugify = require("slugify");
 const cloudinary = require("cloudinary");
+const { getLabel } = require("../services/ai-image");
 
 exports.addProduct = (req, res) => {
   const { name, price, description, category, quantity } = req.body;
@@ -48,6 +49,7 @@ exports.getProductById = (req, res) => {
     res.status(400).json({ error: "Params required" });
   }
 };
+
 
 // Update Product -- Admin
 exports.updateProduct = async (req, res, next) => {
@@ -302,31 +304,15 @@ exports.addProductReview = (req, res) => {
 };
 
 exports.searchProductByImage = async (req, res) => {
-  const base64Img = req.body.img;
-  const imgUrl = await uploadToCloudinary(base64Img);
-  const apiKey = "AIzaSyBP2obmxNJrMqUEQ8R2jqBXqFLZElGzUYQ";
-  const searchEngineId = "872ba8d511e1b45dd";
-  const searchUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineId}&searchType=image&q=`;
-  fetch(searchUrl + encodeURIComponent(imgUrl))
-  .then(response => response.json())
-  .then(res => console.log(res))
-  .then(data => {
-    // Extract the first image result from the search data
-    const imageResult = data.items[0];
-
-    // Extract the title and author from the image result
-    const bookTitle = imageResult.title;
-    const bookAuthor = imageResult.displayLink;
-
-    // Log the book information to the console
-    console.log(`Book title: ${bookTitle}`);
-    console.log(`Book author: ${bookAuthor}`);
-    res.status(200).json({message: bookTitle});
-  })
-  .catch(error => {
+  try {
+    const { buffer, mimetype, originalname } = req.file;
+    console.log("imageBuffer: ", req.file)
+    const label = await getLabel(buffer);
+    res.status(200).json({title: label});
+  } catch (error) {
     console.error(error);
-  });
-
+    res.status(500).json({ error: 'An error occurred while processing the image' });
+  }
 }
 
 // Example update status product
