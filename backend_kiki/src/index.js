@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const cors = require("cors");
 const bodyParser = require("body-parser")
+const seed = require("./seed/index")
 
 env.config();
 mongoose
@@ -15,8 +16,12 @@ mongoose
       useUnifiedTopology: true,
     }
   )
-  .then(() => {
+  .then(async () => {
     console.log("Database connected");
+
+    console.log("Seeding...")
+    await seed();
+    console.log("Created Seed")
   });
 
 app.use(cors());
