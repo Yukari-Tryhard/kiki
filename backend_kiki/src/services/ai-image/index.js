@@ -1,15 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 const tf = require('@tensorflow/tfjs');
+require("dotenv").config();
 require('@tensorflow/tfjs-node');
 const sharp = require('sharp');
 
 const IMAGE_WIDTH = 150;
 const IMAGE_HEIGHT = 150;
 const BATCH_SIZE = 32;
-const EPOCHS = 20;
-const TRAIN_DIR = './src/services/ai-image/train/images';
-const MODEL_PATH = './src/services/ai-image/model.json';
+
 
 async function loadImage(imagePath, label) {
   const imageBuffer = fs.readFileSync(imagePath);
@@ -31,6 +30,7 @@ async function loadImageFromBuffer(imageBuffer, label){
   const imageData = new Float32Array(data).map((value) => value / 255);
   return {imageData, label};
 }
+
 
 async function loadImages(imagePath) {
   const labels = fs.readdirSync(imagePath).filter((f) => fs.statSync(path.join(imagePath, f)).isDirectory());
@@ -80,10 +80,9 @@ async function trainModel(model, data, classToIndex) {
 
   const xs = tf.tensor4d(xsValues, [data.length, IMAGE_HEIGHT, IMAGE_WIDTH, 3]);
   const ys = tf.tensor1d(data.map(({label}) => classToIndex[label]), 'float32');
-
   await model.fit(xs, ys, {
     batchSize: BATCH_SIZE,
-    epochs: EPOCHS,
+    epochs: process.env.EPOCHS,
     shuffle: true,
     verbose: 1,
   });
@@ -92,15 +91,15 @@ async function trainModel(model, data, classToIndex) {
   ys.dispose();
 }
 
-exports.getLabel = async function getLabel(imageBuffer) {
+async function getLabel(imageBuffer) {
   try {
     let model;
-    const images = await loadImages(TRAIN_DIR);
+    const images = await loadImages(process.env.TRAIN_DIR);
     const uniqueLabels = Array.from(new Set(images.map(({label}) => label)));
     const classToIndex = uniqueLabels.reduce((acc, label, index) => ({...acc, [label]: index}), {});
-    if (fs.existsSync(MODEL_PATH)) {
+    if (fs.existsSync(process.env.MODEL_PATH)) {
       console.log('Loading existing model...');
-      model = await tf.loadLayersModel(`file://${MODEL_PATH}/model.json`);
+      model = await tf.loadLayersModel(`file://${process.env.MODEL_PATH}/model.json`);
       console.log('Loaded existing model.');
     } else {
       
@@ -111,8 +110,8 @@ exports.getLabel = async function getLabel(imageBuffer) {
       await trainModel(model, images, classToIndex);
       console.log('Finished training the model.');
 
-      await model.save(`file://${MODEL_PATH}`);
-      console.log(`Saved the model to ${MODEL_PATH}`);
+      await model.save(`file://${process.env.MODEL_PATH}`);
+      console.log(`Saved the model to ${process.env.MODEL_PATH}`);
     }
 
     // Test the model
@@ -145,3 +144,11 @@ exports.getLabel = async function getLabel(imageBuffer) {
   }
 };
 
+module.exports = {
+  loadImage,
+  loadImageFromBuffer,
+  loadImages,
+  createModel,
+  trainModel,
+  getLabel
+}
