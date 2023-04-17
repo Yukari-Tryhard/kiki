@@ -1,0 +1,65 @@
+# Add Category
+POST http://localhost:5000/api/category/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxM2ViNDA3ZjFhODdiY2Y5NmQxYWMiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2MzEyNTA2NiwiZXhwIjoxNjY1NzE3MDY2fQ.wOaErPVvDyuVqUgfRKC5kxYwkMhWjd5uwSkx4gqD7wQ
+
+{
+    "name":"Rau ăn lá"
+}
+
+# Get All Categories
+###################################################
+GET  http://localhost:5000/api/category/getCategories
+Content-Type: application/json
+
+{
+    
+}
+
+# Get Category By iD
+###################################################
+POST  http://localhost:5000/api/category/getCateById
+Content-Type: application/json
+
+{
+    "_id":"633adbcc598788c5610304c8"
+}
+# Get All disabled Categories
+###################################################
+GET  http://localhost:5000/api/category/getDisableCategories
+Content-Type: application/json
+
+{
+}
+
+# Delete a category
+###################################################
+POST  http://localhost:5000/api/category/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxM2ViNDA3ZjFhODdiY2Y5NmQxYWMiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2NjE4ODc5MSwiZXhwIjoxNjY4NzgwNzkxfQ.Fjy2JO-HFSnvC_2NLhSRh1966yBd1tYOOH9wgiCPGoY
+
+{
+    "_id":"633adda2598788c5610304e8"
+}
+
+# Enable a category
+###################################################
+POST  http://localhost:5000/api/category/enable
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxM2ViNDA3ZjFhODdiY2Y5NmQxYWMiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2NjE4ODc5MSwiZXhwIjoxNjY4NzgwNzkxfQ.Fjy2JO-HFSnvC_2NLhSRh1966yBd1tYOOH9wgiCPGoY
+
+{
+    "_id":"633adbcc598788c5610304c8"
+}
+
+# Update A category
+###################################################
+POST http://localhost:5000/api/category/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxM2ViNDA3ZjFhODdiY2Y5NmQxYWMiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2MzEyNTA2NiwiZXhwIjoxNjY1NzE3MDY2fQ.wOaErPVvDyuVqUgfRKC5kxYwkMhWjd5uwSkx4gqD7wQ
+
+{
+    "_id":"63216e8a89d36401b2896750",
+    "name":"Rau cur qua"
+}
+
