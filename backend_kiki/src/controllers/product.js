@@ -4,7 +4,19 @@ const slugify = require("slugify");
 const cloudinary = require("cloudinary");
 
 exports.addProduct = (req, res) => {
-  const { name, price, description, category, quantity } = req.body;
+  const {
+    name,
+    publishingYear,
+    language,
+    pages,
+    publisher,
+    form,
+    author,
+    price,
+    description,
+    category,
+    quantity,
+  } = req.body;
   let productPictures = [];
 
   if (req.files.length > 0) {
@@ -13,7 +25,13 @@ exports.addProduct = (req, res) => {
     });
   }
   const product = new Product({
-    name: name,
+    name,
+    publishingYear,
+    language,
+    pages,
+    publisher,
+    form,
+    author,
     slug: `${slugify(name)}-${shortid.generate()}`,
     price,
     description,
@@ -308,26 +326,25 @@ exports.searchProductByImage = async (req, res) => {
   const searchEngineId = "872ba8d511e1b45dd";
   const searchUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineId}&searchType=image&q=`;
   fetch(searchUrl + encodeURIComponent(imgUrl))
-  .then(response => response.json())
-  .then(res => console.log(res))
-  .then(data => {
-    // Extract the first image result from the search data
-    const imageResult = data.items[0];
+    .then((response) => response.json())
+    .then((res) => console.log(res))
+    .then((data) => {
+      // Extract the first image result from the search data
+      const imageResult = data.items[0];
 
-    // Extract the title and author from the image result
-    const bookTitle = imageResult.title;
-    const bookAuthor = imageResult.displayLink;
+      // Extract the title and author from the image result
+      const bookTitle = imageResult.title;
+      const bookAuthor = imageResult.displayLink;
 
-    // Log the book information to the console
-    console.log(`Book title: ${bookTitle}`);
-    console.log(`Book author: ${bookAuthor}`);
-    res.status(200).json({message: bookTitle});
-  })
-  .catch(error => {
-    console.error(error);
-  });
-
-}
+      // Log the book information to the console
+      console.log(`Book title: ${bookTitle}`);
+      console.log(`Book author: ${bookAuthor}`);
+      res.status(200).json({ message: bookTitle });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
 
 // Example update status product
 // db.Owners.update({ _id: req.params.id },{"$set":{"active":false}})
@@ -336,7 +353,6 @@ exports.searchProductByImage = async (req, res) => {
 //  },
 
 async function uploadToCloudinary(image) {
-
   try {
     const result = await cloudinary.v2.uploader.upload(image);
     console.log("result: ", result);
