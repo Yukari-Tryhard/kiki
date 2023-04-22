@@ -155,6 +155,32 @@ exports.deleteProductById = (req, res) => {
   }
 };
 
+exports.getProductsByPages = (req, res) => {
+  const {from, to} = req.body;
+  const query = {};
+
+  if (from && to) {
+    query.pages = { $gte: from, $lte: to };
+  } else if (from) {
+    query.pages = { $gte: from };
+  } else if (to) {
+    query.pages = { $lte: to };
+  }
+  else {
+    return res.status(400).json({ error: "Params required" });
+  }
+  Product.find(query)
+    .populate('category')
+    .exec()
+    .then(products => {
+      res.send(products);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Internal server error');
+  });
+}
+
 exports.enableProductById = (req, res) => {
   const { productId } = req.body;
   if (productId) {
