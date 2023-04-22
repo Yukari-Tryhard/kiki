@@ -13,7 +13,8 @@ const {
   deleteProductByCateId,
   enableProductByCateId,
   getProductsDisable,
-  searchProductByImage
+  searchProductByImage,
+  getProductByCategoryName
 } = require("../controllers/product");
 const {
   requireSignin,
@@ -48,6 +49,7 @@ router.post(
 );
 router.post("/searchByProductName", searchByProductName);
 router.get("/getProductsByCategory/:categoryId", getProductByCategory);
+router.get("/getProductsByCategoryName/:categoryName", getProductByCategoryName);
 router.post(
   "/deleteByCategory",
   requireSignin,

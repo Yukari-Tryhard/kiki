@@ -137,6 +137,31 @@ exports.getProductDetailsBySlug = (req, res) => {
   }
 };
 
+exports.getProductByCategoryName = (req, res) => {
+  const { categoryName } = req.params;
+  if (categoryName) {
+    Category.findOne({ name: categoryName })
+      .then(category => {
+      if (!category) {
+        // Category not found, return an empty array of products
+        return [];
+      }
+      return Product.find({ category: category._id })
+      .populate('category') // Populate the category field in the product documents
+      .exec((error, product) => {
+        if (error) return res.status(400).json({ error });
+        if (product) {
+          res.status(200).json({ product });
+        } else {
+          res.status(400).json({ error: "something went wrong" });
+        }
+      });
+  })
+  } else {
+    res.status(400).json({ error: "Params required" });
+  }
+};
+
 exports.deleteProductById = (req, res) => {
   const { productId } = req.body;
   if (productId) {
