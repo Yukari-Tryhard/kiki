@@ -11,6 +11,8 @@
   "author": "HuynhLoc",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow/tfjs": "^4.4.0",
+    "@tensorflow/tfjs-node": "^4.4.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.2",
     "cloudinary": "^1.31.0",
@@ -27,6 +29,7 @@
     "path": "^0.12.7",
     "paypal-rest-sdk": "^1.8.1",
     "redis": "^4.3.1",
+    "sharp": "^0.32.0",
     "shortid": "^2.2.16",
     "slugify": "^1.6.5"
   },

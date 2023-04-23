@@ -6,6 +6,7 @@ const userRoutes = require("./user");
 const deliveryInfoRoutes = require("./deliveryInfo");
 const orderRoutes = require("./order");
 const statisticRoutes = require("./statistic");
+const aiRoutes = require("./ai");
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.use("/user", userRoutes);
 router.use("/deliveryInfo", deliveryInfoRoutes);
 router.use("/order", orderRoutes);
 router.use("/statistic", statisticRoutes);
+router.use("/ai", aiRoutes);
 
 module.exports = router;
