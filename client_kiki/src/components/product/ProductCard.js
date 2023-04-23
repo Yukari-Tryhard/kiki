@@ -1,39 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
+import { IconStar, IconAddToCart } from "../icons";
 import { NavLink } from "react-router-dom";
-import { IconStar } from "../icons";
 
-const ProductCard = ({ thumbnailUrl, name, quantitySell, price, id, url }) => {
+const ProductCard = ({ thumbnailUrl, name, author, price, id, url }) => {
   var nf = new Intl.NumberFormat();
+  const handleAddToCartClick = () => {
+    setShowBubble(true);
+
+    // Hide the bubble after 1 second
+    setTimeout(() => {
+      setShowBubble(false);
+    }, 1000);
+  };
+  const [showBubble, setShowBubble] = useState(false);
+
   return (
-    <NavLink
+    <div
       key={id}
       to={`/product/${url}`}
-      className="flex-1 p-4 m-4 bg-white cursor-pointer rounded-xl shadow-sdproduct hover:shadow-sdproduct hover:scale-105"
+      className="flex-1 p-4 m-4 rounded-xl  justify-center items-center flex-col flex"
     >
       <img
         src={`${thumbnailUrl}`}
         alt=""
-        className="object-cover h-[70%] w-full"
+        className="object-contain h-[fit-content] w-[176px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[5px] "
       />
-      <h3 className="mt-3 mb-1 text-xs leading-5 line-clamp-1 text-textProduct">
+      <div className="cursor-pointer w-[45px] h-[45px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-full backdrop-blur-sm bg-[rgba(255,255,255,0.3)] hover:bg-[rgba(255,255,255,0.9)] relative top-[-1.5rem] items-center justify-center flex " onClick={handleAddToCartClick}>
+        <IconAddToCart className="text-[#10416F]"></IconAddToCart>
+        {showBubble && (
+        <div className="bg-[#10416F] text-white text-xs rounded-full w-4 h-4 absolute top-[-8px]  flex items-center justify-center animate-bounce">
+          +1
+        </div>
+        )}
+      </div>
+      <h3 className="mt-[-1rem] mb-1 text-normal leading-5 line-clamp-1 font-semibold text-[#4998E2]">
         {name}
       </h3>
-
-      <div className="flex items-center gap-x-1">
-        <div className="flex">
-          <IconStar></IconStar>
-          <IconStar></IconStar>
-          <IconStar></IconStar>
-          <IconStar></IconStar>
-          <IconStar></IconStar>
-        </div>
-        <div className="w-[1px] h-2 bg-slag"></div>
-        <span className="text-xs text-textSell">Số lượng {quantitySell}</span>
+      <h3 className="text-sm mt-1 mb-1 text-xs leading-5 line-clamp-2 text-[#99AFFF]">
+        {author}
+      </h3>
+      
+      <div className="flex items-center mt-1 bg-[#4998E2] rounded hover:bg-[#154E84]">
+        <NavLink className="text-sm font-normal text-white px-3 py-1.5" to={""}> {nf.format(price)}đ</NavLink>
       </div>
-      <div className="flex items-center mt-1 text-textProduct">
-        <span className="text-base font-semibold"> {nf.format(price)}đ</span>
-      </div>
-    </NavLink>
+    </div>
   );
 };
 

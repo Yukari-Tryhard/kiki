@@ -15,11 +15,11 @@ const ProductList = ({ products, isLoading }) => {
         <div className="pt-[10px] px-0 pb-[30px] text-center">
           <div className="m-0 p-0">
             <h2 className="text-[24px] leading-[1.3] m-0 font-bold uppercase">
-              TẤT CẢ SẢN PHẨM
+              Khám phá
             </h2>
           </div>
         </div>
-        <div className="grid w-full gap-1 bg-white md:grid-cols-4 xl:grid-cols-5 ">
+        <div className="grid w-full gap-1 bg-white md:grid-cols-4 xl:grid-cols-6">
           {products && !isLoading ? (
             products
               ?.slice(0, next)
@@ -29,7 +29,7 @@ const ProductList = ({ products, isLoading }) => {
                   id={item._id}
                   thumbnailUrl={item.productPictures[0]?.img}
                   name={item.name}
-                  quantitySell={item.quantity}
+                  author={item.author}
                   price={item.price}
                   url={item.slug}
                 ></ProductCard>

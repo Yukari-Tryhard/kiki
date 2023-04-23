@@ -53,7 +53,6 @@ const HomePage = () => {
   return (
     <div>
       <Header></Header>
-      <CategoryTopBar></CategoryTopBar>
       <Banner events={events}></Banner>
       <ListItemsCategory></ListItemsCategory>
       <CategoryProduct></CategoryProduct>
