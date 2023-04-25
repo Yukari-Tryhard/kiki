@@ -55,62 +55,62 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <CheckConnection>
-      <div>
-        <Header></Header>
-        <ProductDetailTopBar></ProductDetailTopBar>
-        <ProductDetailContent></ProductDetailContent>
-        <ProductDetailShortDescription></ProductDetailShortDescription>
-        {userInfo && (
-          <button onClick={submitReviewToggle} className="submitReview">
-            Submit Review
-          </button>
+    // <CheckConnection>
+    <div>
+      <Header></Header>
+      <ProductDetailTopBar></ProductDetailTopBar>
+      <ProductDetailContent></ProductDetailContent>
+      <ProductDetailShortDescription></ProductDetailShortDescription>
+      {userInfo && (
+        <button onClick={submitReviewToggle} className="submitReview">
+          Submit Review
+        </button>
+      )}
+
+      <Dialog
+        aria-labelledby="simple-dialog-title"
+        open={open}
+        onClose={submitReviewToggle}
+      >
+        <DialogTitle>Submit Review</DialogTitle>
+        <DialogContent className="submitDialog">
+          <Rating
+            onChange={(e) => setRating(e.target.value)}
+            value={rating}
+            size="large"
+          />
+
+          <textarea
+            className="submitDialogTextArea"
+            cols="30"
+            rows="5"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          ></textarea>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={submitReviewToggle} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={reviewSubmitHandler} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <div className="p-4 mx-10">
+        {productDetail?.reviews && productDetail?.reviews[0] ? (
+          <div className="reviews">
+            {productDetail?.reviews &&
+              productDetail?.reviews.map((review) => (
+                <ReviewCard key={review._id} review={review} />
+              ))}
+          </div>
+        ) : (
+          <p className="noReviews">No Reviews Yet</p>
         )}
-
-        <Dialog
-          aria-labelledby="simple-dialog-title"
-          open={open}
-          onClose={submitReviewToggle}
-        >
-          <DialogTitle>Submit Review</DialogTitle>
-          <DialogContent className="submitDialog">
-            <Rating
-              onChange={(e) => setRating(e.target.value)}
-              value={rating}
-              size="large"
-            />
-
-            <textarea
-              className="submitDialogTextArea"
-              cols="30"
-              rows="5"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            ></textarea>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={submitReviewToggle} color="secondary">
-              Cancel
-            </Button>
-            <Button onClick={reviewSubmitHandler} color="primary">
-              Submit
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <div className="p-4 mx-10">
-          {productDetail?.reviews && productDetail?.reviews[0] ? (
-            <div className="reviews">
-              {productDetail?.reviews &&
-                productDetail?.reviews.map((review) => (
-                  <ReviewCard key={review._id} review={review} />
-                ))}
-            </div>
-          ) : (
-            <p className="noReviews">No Reviews Yet</p>
-          )}
-        </div>
-        <Footer></Footer>
       </div>
-    </CheckConnection>
+      <Footer></Footer>
+    </div>
+    // </CheckConnection>
   );
 }
