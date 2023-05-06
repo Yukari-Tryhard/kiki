@@ -15,7 +15,8 @@ const {
   enableProductByCateId,
   getProductsDisable,
   searchProductByImage,
-  getProductsByPages
+  getProductsByPages,
+  getProductByCategoryName
 } = require("../controllers/product");
 const {
   requireSignin,
@@ -53,6 +54,7 @@ router.post(
   router.get("/searchByImage",  upload.single('image'), searchProductByImage)
 router.get("/getProductsByCategory/:categoryId", getProductByCategory);
 router.get("/getProductsByPages", getProductsByPages);
+router.get("/getProductsByCategoryName/:categoryName", getProductByCategoryName);
 router.post(
   "/deleteByCategory",
   requireSignin,
