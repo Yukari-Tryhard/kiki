@@ -16,36 +16,26 @@ const Header = () => {
     dispatch(getUserById());
   }, [dispatch]);
   return (
-    <header id="main-header" className="relative bg-[#008641] z-[999] lg:p-3">
+    <header id="main-header" className="relative bg-[#4897E0] z-[999] lg:p-3">
       {/* Start Top Header */}
       <div
         id="top-header"
-        className="tracking-normal xl:w-[1270px] px-[15px] mr-auto ml-auto"
+        className="tracking-normal px-36 w-full"
       >
-        <div className="middle-wrap flex pt-3 pb-3 px-[0] h-auto relative z-[2] items-center">
-          {/* Start Content Header */}
-          <div className="flex items-center tracking-normal middle-left grow shrink-0">
-            {/* Start Logo Header */}
-            <div className="logo-menu flex items-start basis-[190px] shrink-0 mr-4">
-              <div className="tracking-normal flex justify-between grow-[1] shrink-[1] basis-0">
+        <div className="middle-wrap flex pt-3 pb-3 px-[0] h-auto relative z-[2] items-center justify-between">
                 <NavLink
                   to="/"
-                  className="w-[100x] h-[52px] block tracking-normal text-[#0b74e5] no-underline bg-transparent cursor-pointer"
+                  className="w-[50px] h-[52px] block tracking-normal text-[#0b74e5] no-underline cursor-pointer"
                 >
                   <img
-                    className="absolute w-[190px] h-[190px] top-[-64px] left-[-50px]"
+                    className="absolute w-[50px] h-[50px] "
                     src={logo}
                     alt="super_fresh-logo"
                   />
                 </NavLink>
-              </div>
-            </div>
-            {/* End Logo Header */}
-
-            {/* Start Search */}
-            <Search></Search>
+          {/* Start Search */}
+          <Search></Search>
             {/* End Search */}
-          </div>
           <div className="box-border flex items-center justify-end tracking-normal header-user">
             {userInfo?.user?.name ? (
               <IconAccount></IconAccount>

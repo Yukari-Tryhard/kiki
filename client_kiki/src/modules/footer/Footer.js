@@ -11,17 +11,16 @@ import email from "../../image/email.svg";
 
 const Footer = () => {
   return (
-    <div className="w-full">
-      <div className="flex max-w-[1270px] w-full px-4 justify-between py-8 mx-auto border-t border-dashed border-[#dcdcdc]">
-        <div className="flex-1 max-w-[268px] px-2">
+    <div className="w-full bg-[#4897E0] text-white">
+      <div className="flex w-full px-36 justify-between py-8 border-t border-dashed border-[#dcdcdc]">
+        <div className="flex-1 max-w-[268px] px-2 flex items-start flex-col">
           <img
-            className="h-[80px] w-[140px] mx-auto mb-2"
+            className="h-[48px] mb-2"
             src={logo}
             alt="logo"
           />
           <p className="text-justify mb-2 text-[14px]">
-            Super Fresh - Nơi cung cấp các loại nông sản sạch, an toàn và bổ
-            dưỡng theo tiêu chuẩn VietGAP.
+            Web bán sách Kiki - Nơi cung cấp những quyển sách mới nhất với nội dung được chọn lọc kĩ càng đến từ nhiều tác giả nổi tiếng trên thế giới
           </p>
           <div className="mb-2 text-justify">
             <img className="inline-block" src={place} alt="" />
@@ -41,7 +40,7 @@ const Footer = () => {
         </div>
 
         <div className="flex-1 max-w-[268px] px-2">
-          <h4 className="mb-1 text-base font-semibold text-textfooter">
+          <h4 className="mb-1 text-base font-semibold ">
             Về chúng tôi
           </h4>
           <div className="grid grid-cols-1 gap-1 text-gray-500">
@@ -61,7 +60,7 @@ const Footer = () => {
               Khách hàng thân thiết
             </a>
           </div>
-          <h4 className="mb-3 mt-8 text-base font-semibold text-textfooter">
+          <h4 className="mb-3 mt-8 text-base font-semibold ">
             Kết nối với chúng tôi
           </h4>
           <div className="grid grid-cols-5 gap-2">
@@ -78,7 +77,7 @@ const Footer = () => {
         </div>
 
         <div className="flex-1 max-w-[268px] px-2">
-          <h4 className="mb-3 text-base font-semibold text-textfooter">
+          <h4 className="mb-3 text-base font-semibold ">
             Hỗ trợ khách hàng
           </h4>
           <div className="grid grid-cols-1 gap-1 text-xs text-gray-500">
@@ -106,21 +105,21 @@ const Footer = () => {
         </div>
 
         <div className="flex-1 max-w-[268px] px-2">
-          <h4 className="mb-3 text-base font-semibold text-textfooter">
+          <h4 className="mb-3 text-base font-semibold ">
             Địa chỉ cửa hàng
           </h4>
 
           <div class="aa-contact-map">
             <iframe
             title="contact"
-            className="w-[250px] h-[250px] border-[#008440] border-[2px] rounded-lg"
+            className="w-[250px] h-[250px] border-[#FFFFFF] border-[2px] rounded-lg"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4842318813353!2d106.76973361462129!3d10.85072666078536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1636705454227!5m2!1svi!2s"
 
             ></iframe>
           </div>
         </div>
       </div>
-      <div className="w-full h-10 bg-[#008641] mx-auto">
+      <div className="w-full h-10 bg-[#4897E0] mx-auto">
         <h4 className="text-white text-center leading-10">Copyright © 2022 Super Fresh</h4>
       </div>
     </div>

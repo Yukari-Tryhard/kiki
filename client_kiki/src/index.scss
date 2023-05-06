@@ -934,3 +934,32 @@ input:focus + .error-input {
 .MuiList-root {
   height: 200px !important  ;
 }
+
+.bubble {
+  background-color: #10416F;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -2px;
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes bounce {
+  0% {
+    top: -10px;
+    transform: scale(1);
+  }
+  50% {
+    top: -18px;
+    transform: scale(1.2);
+  }
+  100% {
+    top: -18px;
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}

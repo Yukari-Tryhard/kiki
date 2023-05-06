@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { axiosClient } from "../../app/axiosClient";
 
 const Search = () => {
   const [value, setValue] = useState("");
@@ -17,35 +18,6 @@ const Search = () => {
   };
 
   function searchBookFromImage(imageFile) {
-    const apiKey = "AIzaSyBP2obmxNJrMqUEQ8R2jqBXqFLZElGzUYQ";
-    const searchEngineId = "872ba8d511e1b45dd";
-    const searchURL = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineId}&searchType=image&q=`;
-
-    const formData = new FormData();
-    formData.append("image", imageFile);
-
-    return fetch(searchURL, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Extract the first image result from the search data
-        const imageResult = data.items[0];
-
-        // Extract the title and author from the image result
-        const bookTitle = imageResult.title;
-        const bookAuthor = imageResult.displayLink;
-
-        // Log the book information to the console
-        console.log(`Book title: ${bookTitle}`);
-        console.log(`Book author: ${bookAuthor}`);
-
-        return { bookTitle, bookAuthor };
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   }
 
   const onSearchByImage = () => {
@@ -62,28 +34,24 @@ const Search = () => {
   };
 
   return (
-    <div className="tracking-normal grow-[1] shrink-[1] basis-0 rounded-lg">
-      <div className="relative flex w-full tracking-normal shadow form">
+    <div className="tracking-normal grow-[1] max-w-[611px] shrink-[1] basis-0 rounded-lg">
+      <div className="relative flex w-full tracking-normal shadow form bg-white h-[40px] items-center gap-1 pl-2 pr-4 rounded-md">
         <input
           className="tracking-normal border-0 py-0 px-[12px] text-[13px] rounded-tl-[2px] rounded-tr-[0px] rounded-br-[0px] rounded-bl-[2px] grow-[1] shrink-[1] basis-0 outline-0 overflow-visible leading-[1.15] m-0"
           type="text"
-          placeholder="Tìm sản phẩm, danh mục hay thương hiệu mong muốn ..."
+          placeholder="Tìm kiếm sách"
           value={value}
           onChange={onChange}
           ref={inputRef}
         />
         <button
-          className="btn-search tracking-normal cursor-pointer border-0 w-[40px] bg-amber-400 h-[40px] rounded-tl-[0px] rounded-tr-[2px] rounded-br-[2px] rounded-bl-[0px] text-white text-[13px] font-medium outline-0 flex items-center justify-center normal-case overflow-visible leading-[1.15] box-border m-0"
+          className="btn-search tracking-normal cursor-pointer border-0 w-[30px] bg-[#024E95] h-[30px] rounded-tr-[2px] rounded text-white text-[13px] font-medium outline-0 flex items-center justify-center normal-case overflow-visible leading-[1.15] box-border m-0"
           onClick={() => onSearchByImage()}
         >
-          <img
-            className="w-[20px] h-[20px] my-0 mr-[8px] ml-0 tracking-normal max-w-full border-none"
-            src="https://png.pngtree.com/png-clipart/20190921/original/pngtree-file-upload-icon-png-image_4717174.jpg"
-            alt=""
-          />
+          <i class="bi bi-upload"></i>
         </button>
         <button
-          className="btn-search tracking-normal cursor-pointer border-0 w-[120px] bg-amber-400 h-[40px] rounded-tl-[0px] rounded-tr-[2px] rounded-br-[2px] rounded-bl-[0px] text-white text-[13px] font-medium outline-0 flex items-center justify-center normal-case overflow-visible leading-[1.15] box-border m-0"
+          className="btn-search tracking-normal cursor-pointer border-0 w-[120px] bg-[#024E95] h-[30px] rounded-tr-[2px] rounded rounded-br-[2px] text-white text-[13px] font-medium outline-0 flex items-center justify-center normal-case overflow-visible leading-[1.15] box-border m-0"
           onClick={() => onSearch(value)}
         >
           <img

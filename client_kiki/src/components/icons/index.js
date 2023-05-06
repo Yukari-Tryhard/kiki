@@ -4,3 +4,4 @@ export const { default: IconCart } = require("./IconCart");
 export const { default: IconRight } = require("./IconRight");
 export const { default: IconStar } = require("./IconStar");
 export const { default: IconNavBarLogin } = require("./IconNavBarLogin");
+export const { default: IconAddToCart} = require("./IconAddToCart")
