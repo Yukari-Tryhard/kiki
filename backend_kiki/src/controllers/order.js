@@ -171,7 +171,7 @@ exports.paymentWithMomo = async (req, res) => {
   const secretkey = "MHxk2u6eOXitCarGbCsGXmpydjn0wCAk";
   const requestId = partnerCode + new Date().getTime();
   const orderId = requestId;
-  const orderInfo = "Thanh toán rau củ tại Super Fresh";
+  const orderInfo = "Thanh toán trực tuyến đơn hàng Kiki";
   const redirectUrl = "https://client-superfresh.vercel.app/cart";
   const ipnUrl =
     "https://apisuperfreshute.herokuapp.com/api/order/addOrderByPaymentMomo";

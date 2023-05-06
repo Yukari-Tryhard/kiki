@@ -10,14 +10,23 @@ import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import CheckConnection from "../HOC/CheckConnection";
+import DatePicker from "react-datepicker";
 
 const ProductEditPage = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [images, setImages] = useState([]);
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [description, setDescription] = useState("");
+  const [images, setImages] = useState([]);
+  const [language, setLanguage] = useState("");
+  const [publisher, setPublisher] = useState("");
+  const [forms, setForms] = useState("");
+  const [pages, setPages] = useState(0);
+  const [author, setAuthor] = useState("");
+  const dateNow = new Date();
+  const [publishYear, setPublishYear] = useState(0);
+  const [publishDate, setPublishDate] = useState(dateNow.toISOString());
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
@@ -45,6 +54,11 @@ const ProductEditPage = () => {
       setCategory(product.category._id);
       setQuantity(product.quantity);
       setDescription(product.description);
+      setPublishDate(product.publishingDate);
+      setPublishYear(product.publishingYear);
+      setLanguage(product.language);
+      setForms(product.form);
+      setPublisher(product.publisher);
       setOldImages(product.productPictures);
     }
   }, [dispatch, slug, product, success]);
@@ -88,7 +102,7 @@ const ProductEditPage = () => {
   return (
     <>
       <CheckConnection>
-        <Link to="/admin/productlist" className="btn btn-light my-3">
+        <Link to="/admin/productlist" className="my-3 btn btn-light">
           Quay lại
         </Link>
         <FormContainer>
@@ -107,6 +121,82 @@ const ProductEditPage = () => {
                   placeholder="Enter name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="publishyear">
+                <Form.Label>Publish Year</Form.Label>
+                <Form.Control
+                  required
+                  type="number"
+                  placeholder="Enter publish year"
+                  isInvalid={!(parseInt(price) > 0) && price.length}
+                  value={publishYear}
+                  onChange={(e) => setPublishYear(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="publishingdate">
+                <Form.Label>Publish Date</Form.Label>
+                <DatePicker
+                  selected={new Date(publishDate)}
+                  onChange={(date) => setPublishDate(date.toString())}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="language">
+                <Form.Label>Language</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Enter language"
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="publishyear">
+                <Form.Label>Pages</Form.Label>
+                <Form.Control
+                  required
+                  type="number"
+                  placeholder="Enter publish year"
+                  isInvalid={!(parseInt(price) > 0) && price.length}
+                  value={pages}
+                  onChange={(e) => setPages(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="language">
+                <Form.Label>Publisher</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Enter publisher"
+                  value={publisher}
+                  onChange={(e) => setPublisher(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="language">
+                <Form.Label>Form</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Enter form"
+                  value={forms}
+                  onChange={(e) => setForms(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="language">
+                <Form.Label>Author</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Enter author"
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
                 ></Form.Control>
               </Form.Group>
 

@@ -110,8 +110,7 @@ export const orderConstants = {
 };
 
 // export const API_URL = "https://apisuperfreshute.herokuapp.com/api";
-// export const API_URL = "http://localhost:5000/api";
-export const API_URL = "https://superfreshdemoforbackend.vercel.app/api";
-
+export const API_URL = "http://localhost:5000/api";
+//export const API_URL = "https://superfreshdemoforbackend.vercel.app/api";
 
 // http://localhost:5000/api

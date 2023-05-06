@@ -9,7 +9,9 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { productConstants } from "../actions/constant";
 import { toast } from "react-toastify";
+import "react-datepicker/dist/react-datepicker.css";
 import CheckConnection from "../HOC/CheckConnection";
+import DatePicker from "react-datepicker";
 
 const ProductAddPage = () => {
   const [name, setName] = useState("");
@@ -20,6 +22,14 @@ const ProductAddPage = () => {
   const { categories } = useSelector((state) => state.category);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
+  const [language, setLanguage] = useState("");
+  const [publisher, setPublisher] = useState("");
+  const [forms, setForms] = useState("");
+  const [pages, setPages] = useState(0);
+  const [author, setAuthor] = useState("");
+  const dateNow = new Date();
+  const [publishYear, setPublishYear] = useState(0);
+  const [publishDate, setPublishDate] = useState(dateNow.toISOString());
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,9 +47,17 @@ const ProductAddPage = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     const form = new FormData();
     form.append("name", name);
     form.append("price", price);
+    form.append("publishingYear", publishYear);
+    form.append("publishingDate", publishDate);
+    form.append("language", language);
+    form.append("pages", pages);
+    form.append("publisher", publisher);
+    form.append("form", forms);
+    form.append("author", author);
     form.append("quantity", quantity);
     form.append("description", description);
     form.append("category", category);
@@ -73,7 +91,7 @@ const ProductAddPage = () => {
   return (
     <>
       <CheckConnection>
-        <Link to="/admin/productlist" className="btn btn-light my-3">
+        <Link to="/admin/productlist" className="my-3 btn btn-light">
           Quay lại
         </Link>
         <FormContainer>
@@ -95,7 +113,83 @@ const ProductAddPage = () => {
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group controlId="email" className="my-3">
+              <Form.Group controlId="publishyear">
+                <Form.Label>Publish Year</Form.Label>
+                <Form.Control
+                  required
+                  type="number"
+                  placeholder="Enter publish year"
+                  isInvalid={!(parseInt(price) > 0) && price.length}
+                  value={publishYear}
+                  onChange={(e) => setPublishYear(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="publishingdate">
+                <Form.Label>Publish Date</Form.Label>
+                <DatePicker
+                  selected={new Date(publishDate)}
+                  onChange={(date) => setPublishDate(date.toString())}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="language">
+                <Form.Label>Language</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Enter language"
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="publishyear">
+                <Form.Label>Pages</Form.Label>
+                <Form.Control
+                  required
+                  type="number"
+                  placeholder="Enter publish year"
+                  isInvalid={!(parseInt(price) > 0) && price.length}
+                  value={pages}
+                  onChange={(e) => setPages(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="language">
+                <Form.Label>Publisher</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Enter publisher"
+                  value={publisher}
+                  onChange={(e) => setPublisher(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="language">
+                <Form.Label>Form</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Enter form"
+                  value={forms}
+                  onChange={(e) => setForms(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="language">
+                <Form.Label>Author</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Enter author"
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId="price" className="my-3">
                 <Form.Label>Price</Form.Label>
                 <Form.Control
                   required

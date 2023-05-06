@@ -5,7 +5,19 @@ const cloudinary = require("cloudinary");
 const { getLabel } = require("../services/ai-image");
 
 exports.addProduct = (req, res) => {
-  const { name, price, description, category, quantity } = req.body;
+  const {
+    name,
+    publishingYear,
+    language,
+    pages,
+    publisher,
+    form,
+    author,
+    price,
+    description,
+    category,
+    quantity,
+  } = req.body;
   let productPictures = [];
 
   if (req.files.length > 0) {
@@ -14,7 +26,13 @@ exports.addProduct = (req, res) => {
     });
   }
   const product = new Product({
-    name: name,
+    name,
+    publishingYear,
+    language,
+    pages,
+    publisher,
+    form,
+    author,
     slug: `${slugify(name)}-${shortid.generate()}`,
     price,
     description,
@@ -49,7 +67,6 @@ exports.getProductById = (req, res) => {
     res.status(400).json({ error: "Params required" });
   }
 };
-
 
 // Update Product -- Admin
 exports.updateProduct = async (req, res, next) => {
@@ -142,23 +159,22 @@ exports.getProductDetailsBySlug = (req, res) => {
 exports.getProductByCategoryName = (req, res) => {
   const { categoryName } = req.params;
   if (categoryName) {
-    Category.findOne({ name: categoryName })
-      .then(category => {
+    Category.findOne({ name: categoryName }).then((category) => {
       if (!category) {
         // Category not found, return an empty array of products
         return [];
       }
       return Product.find({ category: category._id })
-      .populate('category') // Populate the category field in the product documents
-      .exec((error, product) => {
-        if (error) return res.status(400).json({ error });
-        if (product) {
-          res.status(200).json({ product });
-        } else {
-          res.status(400).json({ error: "something went wrong" });
-        }
-      });
-  })
+        .populate("category") // Populate the category field in the product documents
+        .exec((error, product) => {
+          if (error) return res.status(400).json({ error });
+          if (product) {
+            res.status(200).json({ product });
+          } else {
+            res.status(400).json({ error: "something went wrong" });
+          }
+        });
+    });
   } else {
     res.status(400).json({ error: "Params required" });
   }
@@ -183,7 +199,7 @@ exports.deleteProductById = (req, res) => {
 };
 
 exports.getProductsByPages = (req, res) => {
-  const {from, to} = req.body;
+  const { from, to } = req.body;
   const query = {};
 
   if (from && to) {
@@ -192,21 +208,20 @@ exports.getProductsByPages = (req, res) => {
     query.pages = { $gte: from };
   } else if (to) {
     query.pages = { $lte: to };
-  }
-  else {
+  } else {
     return res.status(400).json({ error: "Params required" });
   }
   Product.find(query)
-    .populate('category')
+    .populate("category")
     .exec()
-    .then(products => {
+    .then((products) => {
       res.send(products);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
-      res.status(500).send('Internal server error');
-  });
-}
+      res.status(500).send("Internal server error");
+    });
+};
 
 exports.enableProductById = (req, res) => {
   const { productId } = req.body;
@@ -357,14 +372,16 @@ exports.addProductReview = (req, res) => {
 exports.searchProductByImage = async (req, res) => {
   try {
     const { buffer, mimetype, originalname } = req.file;
-    console.log("imageBuffer: ", req.file)
+    console.log("imageBuffer: ", req.file);
     const label = await getLabel(buffer);
-    res.status(200).json({title: label});
+    res.status(200).json({ title: label });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'An error occurred while processing the image' });
+    res
+      .status(500)
+      .json({ error: "An error occurred while processing the image" });
   }
-}
+};
 
 // Example update status product
 // db.Owners.update({ _id: req.params.id },{"$set":{"active":false}})
@@ -373,7 +390,6 @@ exports.searchProductByImage = async (req, res) => {
 //  },
 
 async function uploadToCloudinary(image) {
-
   try {
     const result = await cloudinary.v2.uploader.upload(image);
     console.log("result: ", result);
