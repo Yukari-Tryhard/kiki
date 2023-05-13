@@ -6,13 +6,13 @@ import ContentEmpty from "../components/cart/ContentEmpty";
 import "react-toastify/dist/ReactToastify.css";
 import BannerShip from "../components/bannercart/BannerShip";
 import { useSelector } from "react-redux";
-import CheckConnection from "../components/HOC/CheckConnection";
+
 
 const Cart = () => {
   const { quantity } = useSelector((state) => state.cart);
 
   return (
-    <CheckConnection>
+    <>
       <div>
         <Header></Header>
         <div className="block bg-white main-cart pb-7">
@@ -44,7 +44,7 @@ const Cart = () => {
         <Footer></Footer>
         {/* <ModalCoupon></ModalCoupon> */}
       </div>
-    </CheckConnection>
+    </>
   );
 };
 

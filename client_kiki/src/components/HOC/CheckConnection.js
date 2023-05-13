@@ -1,7 +1,7 @@
 import React from "react";
 import { Detector } from "react-detect-offline";
 
-const CheckConnection = (props) => {
+const  = (props) => {
   return (
     <>
       <Detector
@@ -20,4 +20,4 @@ const CheckConnection = (props) => {
   );
 };
 
-export default CheckConnection;
+export default ;

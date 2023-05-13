@@ -20,7 +20,7 @@ import {
 } from "../app/features/authSlice";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
-import CheckConnection from "../components/HOC/CheckConnection";
+
 
 const schema = yup
   .object()
@@ -77,7 +77,7 @@ const SignInPage = () => {
   const { value: showPassword, handleToggleValue: handleTogglePassword } =
     useToggleValue(false);
   return (
-    <CheckConnection>
+    <>
       <LayoutAnthentication heading="ĐĂNG NHẬP TÀI KHOẢN">
         <form onSubmit={handleSubmit(handleSignIn)}>
           <FormGroup>
@@ -149,7 +149,7 @@ const SignInPage = () => {
           {/* <ButtonGoogle text="Đăng nhập bằng tài khoản Google"></ButtonGoogle> */}
         </form>
       </LayoutAnthentication>
-    </CheckConnection>
+    </>
   );
 };
 

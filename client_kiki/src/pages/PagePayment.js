@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import CheckConnection from "../components/HOC/CheckConnection";
+
 import {
   HeaderPayment,
   FooterPayment,
@@ -8,7 +8,7 @@ import {
 
 function PagePayment() {
   return (
-    <CheckConnection>
+    <>
       <div
         className={clsx("bg-white", {
           "h-[100vh]": false,
@@ -18,7 +18,7 @@ function PagePayment() {
         <PaymentContent />
         <FooterPayment />
       </div>
-    </CheckConnection>
+    </>
   );
 }
 

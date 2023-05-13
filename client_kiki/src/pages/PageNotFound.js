@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import Button from "../components/button/Button";
-import CheckConnection from "../components/HOC/CheckConnection";
+
 import Footer from "../modules/footer/Footer";
 import Header from "../modules/header/Header";
 
 const PageNotFound = () => {
   const navigate = useNavigate();
   return (
-    <CheckConnection>
+    <>
       <Header></Header>
       <div className="flex flex-col items-center justify-center w-full h-screen py-20 bg-bgHome">
         <img srcSet="../notfound.png 2x" alt="" />
@@ -23,7 +23,7 @@ const PageNotFound = () => {
         </Button>
       </div>
       <Footer></Footer>
-    </CheckConnection>
+    </>
   );
 };
 

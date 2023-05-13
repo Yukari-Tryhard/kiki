@@ -21,7 +21,7 @@ import {
   setPassword,
 } from "../app/features/authSlice";
 import GoogleLogin from "react-google-login";
-import CheckConnection from "../components/HOC/CheckConnection";
+
 
 const schema = yup
   .object()
@@ -77,7 +77,7 @@ const SignUpPage = () => {
   const { value: showPassword, handleToggleValue: handleTogglePassword } =
     useToggleValue(false);
   return (
-    <CheckConnection>
+    <>
       <LayoutAnthentication heading="ĐĂNG KÝ TÀI KHOẢN">
         <form onSubmit={handleSubmit(handleSignUp)} method="post">
           <FormGroup>
@@ -144,7 +144,7 @@ const SignUpPage = () => {
           </p>
         </form>
       </LayoutAnthentication>
-    </CheckConnection>
+    </>
   );
 };
 

@@ -21,7 +21,7 @@ import {
 } from "@material-ui/core";
 import ReviewCard from "../components/productReview/ReviewCard";
 import { toast } from "react-toastify";
-import CheckConnection from "../components/HOC/CheckConnection";
+
 
 export default function ProductDetailPage() {
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <CheckConnection>
+    <>
       <div>
         <Header></Header>
         <ProductDetailTopBar></ProductDetailTopBar>
@@ -111,6 +111,6 @@ export default function ProductDetailPage() {
         </div>
         <Footer></Footer>
       </div>
-    </CheckConnection>
+    </>
   );
 }
