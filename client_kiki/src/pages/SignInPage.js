@@ -20,7 +20,8 @@ import {
 } from "../app/features/authSlice";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
-
+import IconAcLogin from "../components/icons/IconAcLogin";
+import IconPassword from "../components/icons/IconPassword";
 
 const schema = yup
   .object()
@@ -81,72 +82,49 @@ const SignInPage = () => {
       <LayoutAnthentication heading="ĐĂNG NHẬP TÀI KHOẢN">
         <form onSubmit={handleSubmit(handleSignIn)}>
           <FormGroup>
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="email">Tài khoản</Label>
             <Input
               control={control}
               name="email"
               type="email"
-              placeholder="example@gmail.com"
               error={errors.email?.message}
               autoComplete="off"
-            ></Input>
+            >
+              <IconAcLogin></IconAcLogin>
+            </Input>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="password">Mật khẩu *</Label>
+            <Label htmlFor="password">Mật khẩu </Label>
             <Input
               control={control}
               name="password"
               type={`${showPassword ? "text" : "password"}`}
-              placeholder="Nhập mật khẩu"
               error={errors.password?.message}
             >
-              <IconEyeToggle
-                open={showPassword}
-                onClick={handleTogglePassword}
-              ></IconEyeToggle>
+              <IconPassword></IconPassword>
             </Input>
           </FormGroup>
 
-          {/* <FormGroup>
-          <div className="text-right">
-            <span className="inline-block w-full text-sm font-medium text-text2 dark:text-text3">
-              Quên mật khẩu
-            </span>
-          </div>
-        </FormGroup> */}
-          <div className="flex items-center justify-center w-full py-3 text-base font-semibold rounded-lg gap-x-3 text-text2 dark:text-white dark:border-darkStroke">
-            <GoogleLogin
-              clientId="1032921802021-3v44l6mpbiikeiqbuo1pn0ji25tsr809.apps.googleusercontent.com"
-              buttonText="Đăng nhập bằng Google"
-              onSuccess={handleLoginByGoogle}
-              // onFailure={() => alert("Đăng nhập không thành công")}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-          </div>
-          <Button type="submit" className="w-full bg-[#008641] my-2 rounded-lg">
+          <Button
+            type="submit"
+            className="w-full my-2 rounded-lg bg-[#1359CC] shadow-sdbutton mt-16"
+          >
             {isLoading ? (
               <div class="pointer-events-none spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full border-t-transparent"></div>
             ) : (
               "Đăng nhập"
             )}
           </Button>
-          <p className="pt-2 text-xs font-normal text-center lg:text-sm text-text3 lg:mb-0 dark:text-white">
-            Khách hàng mới?{"  "}
-            <Link
-              to="/sign-up"
-              className="font-medium text-[#008641] underline"
-            >
-              Đăng ký
-            </Link>
-          </p>
-          <p className="pt-2 text-xs font-normal text-center lg:text-sm text-text3 lg:mb-0 dark:text-white">
-            Quên mật khẩu?{"  "}
-            <Link to="/" className="font-medium text-[#008641] underline">
-              Khôi phục mật khẩu
-            </Link>
-          </p>
-          {/* <ButtonGoogle text="Đăng nhập bằng tài khoản Google"></ButtonGoogle> */}
+          <p className="w-full mt-5 mb-4 text-center text-[#717171]">Hoặc</p>
+
+          <GoogleLogin
+            clientId="1032921802021-3v44l6mpbiikeiqbuo1pn0ji25tsr809.apps.googleusercontent.com"
+            buttonText="Tiếp tục với Google"
+            onSuccess={handleLoginByGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+            className="flex justify-center w-full h-full !text-black !font-inter !font-bold mb-12"
+          />
         </form>
       </LayoutAnthentication>
     </>

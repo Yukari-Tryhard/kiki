@@ -21,7 +21,8 @@ import {
   setPassword,
 } from "../app/features/authSlice";
 import GoogleLogin from "react-google-login";
-
+import IconPassword from "../components/icons/IconPassword";
+import IconAcLogin from "../components/icons/IconAcLogin";
 
 const schema = yup
   .object()
@@ -81,17 +82,7 @@ const SignUpPage = () => {
       <LayoutAnthentication heading="ĐĂNG KÝ TÀI KHOẢN">
         <form onSubmit={handleSubmit(handleSignUp)} method="post">
           <FormGroup>
-            <Label htmlFor="name">Tên tài khoản *</Label>
-            <Input
-              control={control}
-              name="name"
-              placeholder="Jhon Doe"
-              autoComplete="off"
-              error={errors.name?.message}
-            ></Input>
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="email">Tài khoản</Label>
             <Input
               control={control}
               name="email"
@@ -99,10 +90,12 @@ const SignUpPage = () => {
               placeholder="example@gmail.com"
               error={errors.email?.message}
               autoComplete="off"
-            ></Input>
+            >
+              <IconAcLogin></IconAcLogin>
+            </Input>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="password">Mật khẩu *</Label>
+            <Label htmlFor="password">Mật khẩu </Label>
             <Input
               control={control}
               name="password"
@@ -110,38 +103,43 @@ const SignUpPage = () => {
               placeholder="Create a password"
               error={errors.password?.message}
             >
-              <IconEyeToggle
-                open={showPassword}
-                onClick={handleTogglePassword}
-              ></IconEyeToggle>
+              <IconPassword></IconPassword>
             </Input>
           </FormGroup>
-          <div className="flex items-center justify-center w-full py-3 text-base font-semibold rounded-lg gap-x-3 text-text2 dark:text-white dark:border-darkStroke">
-            <GoogleLogin
-              clientId="1032921802021-3v44l6mpbiikeiqbuo1pn0ji25tsr809.apps.googleusercontent.com"
-              buttonText="Đăng nhập bằng Google"
-              onSuccess={handleLoginByGoogle}
-              onFailure={() => alert("Đăng nhập không thành công")}
-              // onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-          </div>
-          <Button type="submit" className="w-full bg-[#008641] my-2 rounded-lg">
+
+          <FormGroup>
+            <Label htmlFor="password">Nhập lại mật khẩu </Label>
+            <Input
+              control={control}
+              name="password"
+              type={`${showPassword ? "text" : "password"}`}
+              placeholder="Create a password"
+              error={errors.password?.message}
+            >
+              <IconPassword></IconPassword>
+            </Input>
+          </FormGroup>
+
+          <Button
+            type="submit"
+            className="w-full my-2 rounded-lg bg-[#1359CC] shadow-sdbutton mt-14"
+          >
             {isLoading ? (
-              <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full border-t-transparent"></div>
+              <div class="pointer-events-none spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full border-t-transparent"></div>
             ) : (
               "Đăng ký"
             )}
           </Button>
-          <p className="pt-2 text-xs font-normal text-center lg:text-sm text-text3 lg:mb-0">
-            Nếu đã có tài khoản?{"  "}
-            <Link
-              to="/sign-in"
-              className="font-medium underline text-[#008641]"
-            >
-              Đăng nhập
-            </Link>
-          </p>
+          <p className="w-full mt-5 mb-4 text-center text-[#717171]">Hoặc</p>
+
+          <GoogleLogin
+            clientId="1032921802021-3v44l6mpbiikeiqbuo1pn0ji25tsr809.apps.googleusercontent.com"
+            buttonText="Tiếp tục với Google"
+            onSuccess={handleLoginByGoogle}
+            onFailure={() => alert("Đăng nhập không thành công")}
+            cookiePolicy={"single_host_origin"}
+            className="flex justify-center w-full h-full !text-black !font-inter !font-bold mb-3"
+          />
         </form>
       </LayoutAnthentication>
     </>
