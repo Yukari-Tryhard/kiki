@@ -2,7 +2,14 @@ module.exports = {
   darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    fontFamily: {
+      inter: ['"Inter"'],
+    },
     extend: {
+      backgroundImage: {
+        "bg-login": "url('/public/6025986 1.png')",
+        "bg-form": "url('/public/Group13.png')",
+      },
       colors: {
         Descrip: "#EFEFEF",
         Descrip_chirld: "rgb(250, 250, 250)",
@@ -36,6 +43,8 @@ module.exports = {
       },
       boxShadow: {
         sdproduct: "rgb(0 0 0 / 10%) 0px 0px 20px",
+        sdbutton: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        sdform: "0px 4px 4px rgba(0, 0, 0, 0.25);",
       },
     },
   },
