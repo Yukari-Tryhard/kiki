@@ -9,7 +9,7 @@ import { getProductBySlug, updateProduct } from "../actions/productAction";
 import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 import DatePicker from "react-datepicker";
 
 const ProductEditPage = () => {
@@ -101,7 +101,7 @@ const ProductEditPage = () => {
 
   return (
     <>
-      <CheckConnection>
+      <>
         <Link to="/admin/productlist" className="my-3 btn btn-light">
           Quay lại
         </Link>
@@ -277,7 +277,7 @@ const ProductEditPage = () => {
             </Form>
           )}
         </FormContainer>
-      </CheckConnection>
+      </>
     </>
   );
 };

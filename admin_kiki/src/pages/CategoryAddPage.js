@@ -8,7 +8,7 @@ import { categoryConstants } from "../actions/constant";
 import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 
 const CategoryAddPage = () => {
   const [name, setName] = useState("");
@@ -61,7 +61,7 @@ const CategoryAddPage = () => {
 
   return (
     <>
-      <CheckConnection>
+      <>
         <Link to="/admin/categorylist" className="btn btn-light my-3">
           Quay lại
         </Link>
@@ -108,7 +108,7 @@ const CategoryAddPage = () => {
             </Form>
           )}
         </FormContainer>
-      </CheckConnection>
+      </>
     </>
   );
 };

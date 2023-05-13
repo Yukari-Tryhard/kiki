@@ -8,7 +8,7 @@ import { deleteCategory, getAllCategory } from "../actions/categoryAction";
 import { categoryConstants } from "../actions/constant";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 
 const CategogyListPage = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const CategogyListPage = () => {
   };
   return (
     <>
-      <CheckConnection>
+      <>
         <Row className="align-items-center">
           <Col>
             <h1>Categories</h1>
@@ -96,7 +96,7 @@ const CategogyListPage = () => {
             </Table>
           </>
         )}
-      </CheckConnection>
+      </>
     </>
   );
 };

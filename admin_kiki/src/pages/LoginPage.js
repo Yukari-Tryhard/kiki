@@ -10,7 +10,7 @@ import { authConstants } from "../actions/constant";
 import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ const LoginPage = () => {
   }, [user, navigate, dispatch, error]);
 
   return (
-    <CheckConnection>
+    <>
       <FormContainer>
         <h1>Đăng nhập</h1>
         {loading ? (
@@ -73,7 +73,7 @@ const LoginPage = () => {
           </>
         )}
       </FormContainer>
-    </CheckConnection>
+    </>
   );
 };
 

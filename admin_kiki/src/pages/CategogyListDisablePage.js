@@ -10,7 +10,7 @@ import {
 import { categoryConstants } from "../actions/constant";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 
 const CategogyListDisablePage = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const CategogyListDisablePage = () => {
   };
   return (
     <>
-      <CheckConnection>
+      <>
         <Link to="/admin/categorylist" className="btn btn-light my-3">
           Quay lại
         </Link>
@@ -76,7 +76,7 @@ const CategogyListDisablePage = () => {
             </Table>
           </>
         )}
-      </CheckConnection>
+      </>
     </>
   );
 };

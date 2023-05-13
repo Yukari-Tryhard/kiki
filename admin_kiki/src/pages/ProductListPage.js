@@ -9,7 +9,7 @@ import { deleteProduct, getAllProducts } from "../actions/productAction";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 
 const ProductListPage = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const ProductListPage = () => {
   };
   return (
     <>
-      <CheckConnection>
+      <>
         <Row className="align-items-center">
           <Col>
             <h1>Products</h1>
@@ -103,7 +103,7 @@ const ProductListPage = () => {
             {/* <Paginate pages={pages} page={page} isAdmin={true}></Paginate> */}
           </>
         )}
-      </CheckConnection>
+      </>
     </>
   );
 };

@@ -8,7 +8,7 @@ import { enableProduct, getAllProductsDisable } from "../actions/productAction";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 
 const ProductListDisablePage = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const ProductListDisablePage = () => {
   };
   return (
     <>
-      <CheckConnection>
+      <>
         <Link to="/admin/productlist" className="btn btn-light my-3">
           Quay lại
         </Link>
@@ -79,7 +79,7 @@ const ProductListDisablePage = () => {
             {/* <Paginate pages={pages} page={page} isAdmin={true}></Paginate> */}
           </>
         )}
-      </CheckConnection>
+      </>
     </>
   );
 };

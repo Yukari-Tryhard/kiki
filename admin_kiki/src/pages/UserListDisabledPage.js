@@ -7,7 +7,7 @@ import { userConstants } from "../actions/constant";
 import { activeUser, getAllDisabledUsers } from "../actions/userAction";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 
 const UserListDisabledPage = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const UserListDisabledPage = () => {
   };
   return (
     <>
-      <CheckConnection>
+      <>
         <Link to="/admin/userlist" className="btn btn-light my-3">
           Quay lại
         </Link>
@@ -75,7 +75,7 @@ const UserListDisabledPage = () => {
             </tbody>
           </Table>
         )}
-      </CheckConnection>
+      </>
     </>
   );
 };

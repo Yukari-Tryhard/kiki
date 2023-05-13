@@ -10,7 +10,7 @@ import Message from "../components/Message";
 import { productConstants } from "../actions/constant";
 import { toast } from "react-toastify";
 import "react-datepicker/dist/react-datepicker.css";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 import DatePicker from "react-datepicker";
 
 const ProductAddPage = () => {
@@ -90,7 +90,7 @@ const ProductAddPage = () => {
 
   return (
     <>
-      <CheckConnection>
+      <>
         <Link to="/admin/productlist" className="my-3 btn btn-light">
           Quay lại
         </Link>
@@ -261,7 +261,7 @@ const ProductAddPage = () => {
             </Form>
           )}
         </FormContainer>
-      </CheckConnection>
+      </>
     </>
   );
 };

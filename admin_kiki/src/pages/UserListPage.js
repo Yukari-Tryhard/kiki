@@ -7,7 +7,7 @@ import { userConstants } from "../actions/constant";
 import { disabledUser, getAllUsers } from "../actions/userAction";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import CheckConnection from "../HOC/CheckConnection";
+import  from "../HOC/";
 
 const UserListPage = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const UserListPage = () => {
   };
   return (
     <>
-      <CheckConnection>
+      <>
         <h1>Users</h1>
         <Col className="text-right">
           <Button
@@ -82,7 +82,7 @@ const UserListPage = () => {
             </tbody>
           </Table>
         )}
-      </CheckConnection>
+      </>
     </>
   );
 };
