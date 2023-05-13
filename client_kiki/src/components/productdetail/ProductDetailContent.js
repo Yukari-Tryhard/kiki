@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { IconStar } from "../icons";
 import { addToCart } from "../../app/features/cartSlice";
 import Swal from "sweetalert2";
+import IconCartProductDetail from "../icons/IconCartProductDetail";
 
 export default function ProductDetailContent() {
   const dispatch = useDispatch();
@@ -72,24 +73,12 @@ export default function ProductDetailContent() {
   return (
     <div className="flex w-full bg-white">
       <div className="flex flex-col w-full px-4 overflow-hidden bg-white select-none mx-[73px] border-b border-dashed border-[#dcdcdc]">
-        <div className="flex w-full bg-white rounded">
+        <div className="grid w-full grid-cols-2 bg-white rounded">
           {/* left detail*/}
-          <div className="relative p-6 bg-white border-r border-dashed border-[#dcdcdc] w-full">
-            {/* hình to */}
-            <div className="relative flex flex-col">
-              <div className="relative text-center h-[300px]">
-                <img
-                  id="Big picture"
-                  src={productDetail?.productPictures[0]?.img}
-                  alt={productDetail.name}
-                  className="object-contain w-full h-full"
-                />
-              </div>
-            </div>
-            {/* hình chi tiết */}
+          <div className=" p-6 bg-white border-r border-dashed border-[#dcdcdc] w-full grid grid-cols-2">
             <div className="mt-4 mb-0 ml-0 mr-0 basis-full shrink-0 grow-0">
               {/* list chi tiết */}
-              <div className="flex ">
+              <div className="flex flex-col">
                 {productDetail.productPictures?.map(
                   (product_detail_img, index) => (
                     <div
@@ -112,50 +101,16 @@ export default function ProductDetailContent() {
                 )}
               </div>
             </div>
-            {/* chia sẻ */}
-            <div className="flex mt-6 ">
-              <p className="text-sm font-medium capitalize label">
-                Chia sẻ :&nbsp;
-              </p>
-              <img
-                src={
-                  "https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-facebook.svg"
-                }
-                alt=""
-                className="object-cover"
-              />
-              &nbsp;
-              <img
-                src={
-                  "https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-messenger.svg"
-                }
-                alt=""
-                className="object-cover"
-              />
-              &nbsp;
-              <img
-                src={
-                  "https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-pinterest.svg"
-                }
-                alt=""
-                className="object-cover"
-              />
-              &nbsp;
-              <img
-                src={
-                  "https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-twitter.svg"
-                }
-                alt=""
-                className="object-cover"
-              />
-              &nbsp;
-              <img
-                src={
-                  "https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/social-copy.svg"
-                }
-                alt=""
-                className="object-cover"
-              />
+            {/* Hinhf to */}
+            <div className="">
+              <div className="relative text-center h-[300px] grid-cols-4">
+                <img
+                  id="Big picture"
+                  src={productDetail?.productPictures[0]?.img}
+                  alt={productDetail.name}
+                  className="object-contain w-full h-full"
+                />
+              </div>
             </div>
           </div>
 
@@ -164,49 +119,42 @@ export default function ProductDetailContent() {
             {/* header */}
             <div className="pr-0 pl-7">
               {/* title */}
-              <h1 className="w-full mb-1 font-sans text-2xl font-bold leading-8">
+              <h1 className="w-full mb-8 font-sans text-4xl font-bold leading-8">
                 {productDetail.name}
               </h1>
+              <div className="grid grid-cols-2 gap-2 mb-8 text-xs font-medium">
+                <span>Nhà cung cấp: SaiGon Books</span>
+                <span>Tác giả: Aka Akasaka</span>
+                <span>Nhà xuất bản: Thế giới</span>
+                <span>Hình thức bìa: Bìa mềm</span>
+              </div>
               {/* below title */}
-              <div className="flex mt-2">
-                <div className="relative flex">
-                  <div className="flex">
-                    <IconStar></IconStar>
-                    <IconStar></IconStar>
-                    <IconStar></IconStar>
-                    <IconStar></IconStar>
-                    <IconStar></IconStar>
-                  </div>
-                </div>
-                <div className="flex ml-4">
-                  <div className="self-center w-px h-4 bg-current"></div>
-
-                  <p className="px-2 font-sans text-sm leading-4 whitespace-nowrap">
-                    Số lượng {productDetail?.quantity}
-                  </p>
+              <div className="flex mt-2 mb-8">
+                <div className="flex">
+                  <IconStar></IconStar>
+                  <IconStar></IconStar>
+                  <IconStar></IconStar>
+                  <IconStar></IconStar>
+                  <IconStar></IconStar>
                 </div>
               </div>
             </div>
             {/* body */}
-            <div className="flex pt-0 pb-0 pl-6 pr-0 ">
+            <div className="flex w-full pt-0 pb-0 pl-6 pr-0">
               {/* left */}
-              <div className="pr-3 mr-2 basis-0 shrink-1 grow-1">
+              <div className="w-full pr-3 mr-2">
                 {/* prize and icon        */}
-                <div className="flex flex-col pt-3 ">
-                  <div className="flex items-end pt-1 pb-1 pl-4 pr-4 mt-3 mb-0 font-sans rounded ml--4 mr--4 bg-bgPrice">
-                    <div className="flex justify-center ml-1 mr-2 text-4xl font-medium text-center w-36 whitespace-nowrap text-text1">
-                      {nf.format(productDetail?.price)}đ
-                    </div>
+                <div className="flex flex-col w-full mb-8">
+                  <div className="flex justify-center ml-1 mr-2 text-4xl font-medium text-center w-36 whitespace-nowrap text-[#006FD6]">
+                    {nf.format(productDetail?.price)}đ
                   </div>
                 </div>
 
-                <div>
-                  <div className="qty-and-message">
-                    <div className="mt-2 ">
-                      <p className="text-sm font-medium capitalize label">
-                        Số Lượng
-                      </p>
-                      <div className="flex mt-2 mb-2">
+                <div className="w-full">
+                  <div className="w-full">
+                    <div className="w-full mt-2">
+                      <div className="flex items-center w-full mt-2 mb-2">
+                        <p className="w-20 text-sm font-medium">Số Lượng</p>
                         <button
                           onClick={sub}
                           id="sub"
@@ -242,54 +190,18 @@ export default function ProductDetailContent() {
                       </div>
                     </div>
                   </div>
-                  <div>
+                  <div className="mt-8">
                     <button
                       type="button"
-                      className="w-full h-12 max-w-xs text-white bg-[#008641]"
+                      className="w-full h-12 max-w-xs text-[#006FD6] bg-white border border-[#4897E0]"
                       onClick={() => handleAddToCart()}
                     >
-                      Chọn mua
+                      <IconCartProductDetail></IconCartProductDetail>
+                      Thêm vào vỏ hàng
                     </button>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="pl-6 mt-4">
-              <ul className="p-0 m-0 list-none">
-                <li className="relative pt-[7px] pr-0 py-5 pl-[45px] mb-[5px] text-[14px] list-none">
-                  <span className="block absolute top-0 left-0 max-w-[35px]">
-                    <img
-                      src="https://theme.hstatic.net/200000271661/1000922438/14/img_product_service_1.png?v=112"
-                      alt="Cửa hàng rau củ hữu cơ online"
-                    ></img>
-                  </span>
-                  <p className="m-0 leading-[1.2]">
-                    Canh tác hướng hữu cơ không hóa chất
-                  </p>
-                </li>
-                <li className="relative pt-[7px] pr-0 py-5 pl-[45px] mb-[5px] text-[14px] list-none">
-                  <span className="block absolute top-0 left-0 max-w-[35px]">
-                    <img
-                      src="https://theme.hstatic.net/200000271661/1000922438/14/img_product_service_2.png?v=112"
-                      alt="Cửa hàng rau củ hữu cơ online"
-                    ></img>
-                  </span>
-                  <p className="m-0 leading-[1.2]">
-                    Bảo hành đến từng cọng rau
-                  </p>
-                </li>
-                <li className="relative pt-[7px] pr-0 py-5 pl-[45px] mb-[5px] text-[14px] list-none">
-                  <span className="block absolute top-0 left-0 max-w-[35px]">
-                    <img
-                      src="https://theme.hstatic.net/200000271661/1000922438/14/img_product_service_3.png?v=112"
-                      alt="Cửa hàng rau củ hữu cơ online"
-                    ></img>
-                  </span>
-                  <p className="m-0 leading-[1.2]">
-                    Freeship cho hóa đơn từ 250k trong 2h
-                  </p>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
