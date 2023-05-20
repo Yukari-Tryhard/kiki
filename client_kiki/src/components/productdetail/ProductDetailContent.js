@@ -122,11 +122,11 @@ export default function ProductDetailContent() {
               <h1 className="w-full mb-8 font-sans text-4xl font-bold leading-8">
                 {productDetail.name}
               </h1>
-              <div className="grid grid-cols-2 gap-2 mb-8 text-xs font-medium">
-                <span>Nhà cung cấp: SaiGon Books</span>
-                <span>Tác giả: Aka Akasaka</span>
-                <span>Nhà xuất bản: Thế giới</span>
-                <span>Hình thức bìa: Bìa mềm</span>
+              <div className="grid grid-cols-2 gap-2 mb-8 text-base font-medium">
+                <span>Kho: {productDetail.quantity}</span>
+                <span>Tác giả: {productDetail.author}</span>
+                <span>Nhà xuất bản: {productDetail.publisher}</span>
+                <span>Hình thức bìa: {productDetail.form}</span>
               </div>
               {/* below title */}
               <div className="flex mt-2 mb-8">

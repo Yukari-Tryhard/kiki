@@ -8,7 +8,7 @@ const LayoutAnthentication = (props) => {
   const { children, heading } = props;
   return (
     <div className="relative w-full h-full min-h-screen px-10 pt-4 pb-10 bg-fixed bg-center bg-no-repeat bg-cover dark:bg-darkbg isolate bg-bg-login">
-      <div className="w-full max-w-[556px] bg-bg-form rounded-xl px-5 py-8 lg:px-12 lg:py-8  mx-auto mt-[134px] bg-no-repeat bg-cover">
+      <div className="relative w-full max-w-[556px] bg-bg-form rounded-xl px-5 py-8 lg:px-12 lg:py-8  mx-auto mt-[134px] bg-no-repeat bg-cover">
         {/* <h1 className="mb-1 text-lg font-semibold text-center lg:text-xl lg:mb-3 text-text1 dark:text-white">
           {heading}
         </h1> */}
@@ -22,6 +22,7 @@ const LayoutAnthentication = (props) => {
         </Link>
 
         {children}
+       
       </div>
     </div>
   );

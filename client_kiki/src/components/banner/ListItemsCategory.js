@@ -1,15 +1,19 @@
-import React from "react";
+import React, {useEffect}from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getCategories, setCategoryTab } from "../../app/features/productSlice";
 
 const ListItemsCategory = () => {
   const { categories } = useSelector((state) => state.product);
+  console.log(categories)
   const dispatch = useDispatch();
   const handleTabCategory = (category) => {
     dispatch(setCategoryTab(category));
-    dispatch(getCategories());
+    
   };
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
   if (Object.keys(categories).length === 0) {
     return null;
   }

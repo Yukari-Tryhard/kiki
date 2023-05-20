@@ -126,6 +126,8 @@ const SignInPage = () => {
             className="flex justify-center w-full h-full !text-black !font-inter !font-bold mb-12"
           />
         </form>
+        <Link to={"/sign-up"} className="z-[-1] absolute top-[3rem] right-[-6rem] border-2 border-white px-4 pl-10 py-2 rounded text-white font-semibold bookmark">Đăng Ký</Link>
+
       </LayoutAnthentication>
     </>
   );

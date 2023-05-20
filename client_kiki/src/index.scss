@@ -948,6 +948,10 @@ input:focus + .error-input {
   animation-fill-mode: forwards;
 }
 
+.bookmark{
+  background-color: rgba(0, 111, 214, 0.6);
+}
+
 @keyframes bounce {
   0% {
     top: -10px;

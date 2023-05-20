@@ -51,7 +51,7 @@ router.post(
   updateProduct
   );
   router.post("/searchByProductName", searchByProductName);
-  router.get("/searchByImage",  upload.single('image'), searchProductByImage)
+  router.post("/searchByImage",  upload.single('image'), searchProductByImage)
 router.get("/getProductsByCategory/:categoryId", getProductByCategory);
 router.get("/getProductsByPages", getProductsByPages);
 router.get("/getProductsByCategoryName/:categoryName", getProductByCategoryName);

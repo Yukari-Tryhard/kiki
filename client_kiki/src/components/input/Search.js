@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { axiosClient } from "../../app/axiosClient";
+import { axiosClient, baseURL } from "../../app/axiosClient";
 
 const Search = () => {
   const [value, setValue] = useState("");
@@ -17,7 +17,18 @@ const Search = () => {
     console.log("search ", searchItem);
   };
 
-  function searchBookFromImage(imageFile) {
+  async function searchBookFromImage(imageFile) {
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    try {
+      const url = `${baseURL.product}/searchByImage`;
+      const response = await axiosClient.post(url,
+        formData
+      );
+      onSearch(response.title)
+    } catch (error) {
+      // handle errors here
+    };
   }
 
   const onSearchByImage = () => {
@@ -26,9 +37,8 @@ const Search = () => {
     input.accept = "image/*";
     input.onchange = async (event) => {
       const file = event.target.files[0];
-      searchBookFromImage(file);
+      await searchBookFromImage(file);
       // setValue(await searchBookFromImage(file));
-      // inputRef.current.focus();
     };
     input.click();
   };
@@ -48,7 +58,7 @@ const Search = () => {
           className="btn-search tracking-normal cursor-pointer border-0 w-[30px] bg-[#024E95] h-[30px] rounded-tr-[2px] rounded text-white text-[13px] font-medium outline-0 flex items-center justify-center normal-case overflow-visible leading-[1.15] box-border m-0"
           onClick={() => onSearchByImage()}
         >
-          <i class="bi bi-upload"></i>
+          <i className="bi bi-upload"></i>
         </button>
         <button
           className="btn-search tracking-normal cursor-pointer border-0 w-[120px] bg-[#024E95] h-[30px] rounded-tr-[2px] rounded rounded-br-[2px] text-white text-[13px] font-medium outline-0 flex items-center justify-center normal-case overflow-visible leading-[1.15] box-border m-0"
@@ -61,7 +71,7 @@ const Search = () => {
           />
           Tìm Kiếm
         </button>
-        <div className="absolute flex flex-col justify-center w-full mt-10 tracking-normal bg-white">
+        <div className="absolute flex flex-col justify-center w-full top-[3rem] tracking-normal bg-white">
           {products &&
             products
               ?.filter((item) => {
@@ -85,7 +95,8 @@ const Search = () => {
                 >
                   {item.name}
                 </a>
-              ))}
+              ))
+            }
         </div>
       </div>
     </div>

@@ -27,11 +27,6 @@ const ProductCard = ({ thumbnailUrl, name, author, price, id, url }) => {
       />
       <div className="cursor-pointer w-[45px] h-[45px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-full backdrop-blur-sm bg-[rgba(255,255,255,0.3)] hover:bg-[rgba(255,255,255,0.9)] relative top-[-1.5rem] items-center justify-center flex " onClick={handleAddToCartClick}>
         <IconAddToCart className="text-[#10416F]"></IconAddToCart>
-        {showBubble && (
-        <div className="bg-[#10416F] text-white text-xs rounded-full w-4 h-4 absolute top-[-8px]  flex items-center justify-center animate-bounce">
-          +1
-        </div>
-        )}
       </div>
       <h3 className="mt-[-1rem] mb-1 text-normal leading-5 line-clamp-1 font-semibold text-[#4998E2]">
         {name}
@@ -41,7 +36,7 @@ const ProductCard = ({ thumbnailUrl, name, author, price, id, url }) => {
       </h3>
       
       <div className="flex items-center mt-1 bg-[#4998E2] rounded hover:bg-[#154E84]">
-        <NavLink className="text-sm font-normal text-white px-3 py-1.5" to={""}> {nf.format(price)}đ</NavLink>
+        <NavLink className="text-sm font-normal text-white px-3 py-1.5" to={`product/${url}`}> {nf.format(price)}đ</NavLink>
       </div>
     </div>
   );

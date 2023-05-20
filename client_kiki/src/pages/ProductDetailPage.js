@@ -3,6 +3,7 @@ import Footer from "../modules/footer/Footer";
 import ProductDetailTopBar from "../modules/categorytop/ProductDetailTopBar";
 import ProductDetailContent from "../components/productdetail/ProductDetailContent";
 import ProductDetailShortDescription from "../components/productdetail/ProductDetailShortDescription";
+import ProjectInfo from "../components/productdetail/ProjectInfo";
 import Header from "../modules/header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -60,6 +61,7 @@ export default function ProductDetailPage() {
         <Header></Header>
         <ProductDetailTopBar></ProductDetailTopBar>
         <ProductDetailContent></ProductDetailContent>
+        <ProjectInfo></ProjectInfo>
         <ProductDetailShortDescription></ProductDetailShortDescription>
         {userInfo && (
           <button onClick={submitReviewToggle} className="submitReview">

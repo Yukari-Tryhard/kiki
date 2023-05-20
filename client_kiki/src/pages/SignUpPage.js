@@ -79,7 +79,7 @@ const SignUpPage = () => {
     useToggleValue(false);
   return (
     <>
-      <LayoutAnthentication heading="ĐĂNG KÝ TÀI KHOẢN">
+      <LayoutAnthentication heading="ĐĂNG KÝ TÀI KHOẢN" >
         <form onSubmit={handleSubmit(handleSignUp)} method="post">
           <FormGroup>
             <Label htmlFor="email">Tài khoản</Label>
@@ -108,10 +108,10 @@ const SignUpPage = () => {
           </FormGroup>
 
           <FormGroup>
-            <Label htmlFor="password">Nhập lại mật khẩu </Label>
+            <Label htmlFor="re-password">Nhập lại mật khẩu </Label>
             <Input
               control={control}
-              name="password"
+              name="re-password"
               type={`${showPassword ? "text" : "password"}`}
               placeholder="Create a password"
               error={errors.password?.message}
@@ -141,6 +141,7 @@ const SignUpPage = () => {
             className="flex justify-center w-full h-full !text-black !font-inter !font-bold mb-3"
           />
         </form>
+        <Link to={"/sign-in"} className="z-[-1] absolute top-[3rem] right-[-7rem] border-2 border-white px-4 pl-10 py-2 rounded text-white font-semibold bookmark">Đăng Nhập</Link>
       </LayoutAnthentication>
     </>
   );
