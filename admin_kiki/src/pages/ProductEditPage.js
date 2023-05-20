@@ -9,7 +9,7 @@ import { getProductBySlug, updateProduct } from "../actions/productAction";
 import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import  from "../HOC/";
+
 import DatePicker from "react-datepicker";
 
 const ProductEditPage = () => {

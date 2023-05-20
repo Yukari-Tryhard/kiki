@@ -7,7 +7,7 @@ import { userConstants } from "../actions/constant";
 import { activeUser, getAllDisabledUsers } from "../actions/userAction";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import  from "../HOC/";
+
 
 const UserListDisabledPage = () => {
   const dispatch = useDispatch();

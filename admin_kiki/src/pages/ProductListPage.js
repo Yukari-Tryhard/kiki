@@ -9,7 +9,7 @@ import { deleteProduct, getAllProducts } from "../actions/productAction";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import  from "../HOC/";
+
 
 const ProductListPage = () => {
   const dispatch = useDispatch();

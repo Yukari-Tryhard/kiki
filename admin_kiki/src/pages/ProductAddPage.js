@@ -10,7 +10,7 @@ import Message from "../components/Message";
 import { productConstants } from "../actions/constant";
 import { toast } from "react-toastify";
 import "react-datepicker/dist/react-datepicker.css";
-import  from "../HOC/";
+
 import DatePicker from "react-datepicker";
 
 const ProductAddPage = () => {

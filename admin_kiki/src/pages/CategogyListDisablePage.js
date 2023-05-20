@@ -10,7 +10,7 @@ import {
 import { categoryConstants } from "../actions/constant";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import  from "../HOC/";
+
 
 const CategogyListDisablePage = () => {
   const dispatch = useDispatch();

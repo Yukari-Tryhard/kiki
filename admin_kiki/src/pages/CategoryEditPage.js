@@ -8,7 +8,7 @@ import { categoryConstants } from "../actions/constant";
 import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import  from "../HOC/";
+
 
 const CategoryEditPage = () => {
   const { _id } = useParams();
