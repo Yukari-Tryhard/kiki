@@ -27,11 +27,14 @@ import IconAcLogin from "../components/icons/IconAcLogin";
 const schema = yup
   .object()
   .shape({
-    name: yup.string().required("Vui lòng nhập tên tài khoản"),
     email: yup
       .string()
       .required("Vui lòng nhập email")
       .email("Vui lòng nhập email hợp lệ"),
+    rePassword: yup
+    .string()
+    .required("Vui lòng nhập mật khẩu")
+    .min(8, "Mật khẩu phải có độ dài tối đa 8 ký tự"),
     password: yup
       .string()
       .required("Vui lòng nhập mật khẩu")
@@ -54,7 +57,6 @@ const SignUpPage = () => {
   });
 
   const handleSignUp = (formValue) => {
-    dispatch(setPassword(formValue?.password));
     dispatch(register({ formValue, navigate, toast }));
   };
   const handleLoginByGoogle = async (googleData) => {
@@ -111,7 +113,7 @@ const SignUpPage = () => {
             <Label htmlFor="re-password">Nhập lại mật khẩu </Label>
             <Input
               control={control}
-              name="re-password"
+              name="rePassword"
               type={`${showPassword ? "text" : "password"}`}
               placeholder="Create a password"
               error={errors.password?.message}

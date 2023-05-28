@@ -12,7 +12,7 @@ const generateJwtToken = (_id, email, role) => {
 };
 
 exports.signup = async (req, res) => {
-  const { name, email, password } = req.body;
+  const {rePassword, email, password } = req.body;
   try {
     const user = await User.findOne({ email });
     if (user) {
@@ -20,21 +20,26 @@ exports.signup = async (req, res) => {
         error: "User already exists !",
       });
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
-    if (newUser) {
-      let { _id, name, email, role, from, profilePicture, dateOfBirth } =
-        newUser;
-      const token = await generateJwtToken(_id, email, role);
-      // response token and user info
-      res.status(201).json({
-        token,
-        user: { _id, name, email, role, from, profilePicture, dateOfBirth },
+    if (rePassword == password){
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const newUser = await User.create({
+        name:email,
+        email: email,
+        password: hashedPassword,
       });
+      if (newUser) {
+        let { _id, email, role, from, profilePicture, dateOfBirth } =
+          newUser;
+        const token = await generateJwtToken(_id, email, role);
+        // response token and user info
+        res.status(201).json({
+          token,
+          user: { _id,  email, role, from, profilePicture, dateOfBirth },
+        });
+    }
+    else {
+      return res.status(400).json({ msg: 'Password not match' });
+    }
     }
   } catch (error) {
     return res.status(400).json({ error });
